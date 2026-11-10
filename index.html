@@ -1,58 +1,157 @@
-head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plantilla Web Pompeu</title>
-  <title>Plantilla Web de bader </title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-  <style>
-@@ -81,11 +81,15 @@
-          <!-- Projecte 1 -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-diagram-project me-1"></i> Projecte 1
-              <i class="fa-solid fa-diagram-project me-1"></i> Programacio en C
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-code me-1"></i> Projecte 1.1</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-database me-1"></i> Projecte 1.2</a></li>
-              <li><a class="dropdown-item" href="http://badrehaha10-creator.github.io"><i class="fa-solid fa-code me-1"></i> exercici amb printf</a></li>
-              <li><a class="dropdown-item" href="http://badrehaha10-creator.github.io"><i class="fa-solid fa-database me-1"></i> exercici amb scanf</a></li>
-             <li><a class="dropdown-item" href="http://badrehaha10-creator.github.io"><i class="fa-solid fa-code me-1"></i> exercici amb condicionals </a></li>
-              <li><a class="dropdown-item" href="http://badrehaha10-creator.github.io"><i class="fa-solid fa-database me-1"></i> exercici amb codicionals i errors </a></li>
-             <li><a class="dropdown-item" href="http://badrehaha10-creator.github.io"><i class="fa-solid fa-code me-1"></i> exercici amb funcio propia</a></li>
-              <li><a class="dropdown-item" href="http://badrehaha10-creator.github.io"><i class="fa-solid fa-database me-1"></i> exercici6</a></li>
-            </ul>
-          </li>
-          <!-- Projecte 2 -->
-@@ -107,27 +111,28 @@
 
-  <!-- Contingut -->
-  <main class="container py-5">
-    <h1 class="display-5 fw-bold mb-4">Benvinguts als Projectes</h1>
-    <p class="lead">Aquesta és una plantilla web amb menú desplegable, icones Font Awesome, mode clar i fosc, i disseny responsiu per mòbil i ordinador utilitzant Bootstrap 5.3.8. Aquest és el punt de partida per editar tot i fer projectes amb el professor Francesc Pérez.</p>
-    <h1 class="display-5 fw-bold mb-4">Benvinguts a la web de bader</h1>
-    <p class="lead">en aquesta web trobeu exercicis de llenguatges de: programacio en c pyathon i javaScript ,de l'assignatura de programacio de 1er batci de<a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/linstitut/">'institut Pompeu Fabra </a>
-      .</p>
-  </main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Mode clar/fosc amb canvi d'icona
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
+  // Direccion de tus codigos en GitHub
+  const base = "https://raw.githubusercontent.com/badrehaha10-creator/badrehaha10-creator.github.io/main/";
 
-    themeToggle.addEventListener('click', () => {
-      if (document.body.getAttribute('data-bs-theme') === 'dark') {
-        document.body.setAttribute('data-bs-theme', 'light');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-      } else {
-        document.body.setAttribute('data-bs-theme', 'dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
+  const ejercicios = [
+    {
+      nombre: "Ejercicio con scanf",
+      archivo: "tecnoscanf.c",
+      buscar: /scanf/i
+    },
+    {
+      nombre: "Funcion propia",
+      archivo: "tecnofuncio.c",
+      buscar: /funci[oó]n|funcio/i
+    },
+    {
+      nombre: "Ejercicio tecnob3",
+      archivo: "tecnob3.c",
+      buscar: /tecnob3/i
+    }
+  ];
+
+  // Crear el visor de codigos
+  const visor = document.createElement("section");
+  visor.id = "visor-c";
+  visor.className = "container my-5";
+
+  visor.innerHTML = `
+    <div class="card shadow">
+      <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h3 id="tituloC" class="mb-0">Programacion en C</h3>
+
+        <button id="copiarC" class="btn btn-outline-primary btn-sm">
+          <i class="fa-solid fa-copy"></i> Copiar codigo
+        </button>
+      </div>
+
+      <div class="card-body">
+        <p class="text-secondary">
+          Consulta los ejercicios de programacion en C.
+        </p>
+
+        <pre style="background:#171923;color:#e5e7eb;padding:20px;border-radius:8px;overflow-x:auto;min-height:200px;"><code id="contenidoC">Selecciona un ejercicio del menu.</code></pre>
+
+        <p id="estadoC" class="small text-secondary mb-0"></p>
+      </div>
+    </div>
+  `;
+
+  document.querySelector("main").appendChild(visor);
+
+  const contenido = document.getElementById("contenidoC");
+  const titulo = document.getElementById("tituloC");
+  const estado = document.getElementById("estadoC");
+
+  // Buscar el menu de Programacion en C
+  const menus = document.querySelectorAll(".nav-item.dropdown");
+
+  let menuC = null;
+
+  menus.forEach(menu => {
+    if (/programaci[oó]n en c|programacio en c/i.test(
+      menu.querySelector(".nav-link")?.textContent || ""
+    )) {
+      menuC = menu.querySelector(".dropdown-menu");
+    }
+  });
+
+  // Cargar un ejercicio dentro de la pagina
+  async function cargarCodigo(ejercicio) {
+
+    titulo.textContent = ejercicio.nombre;
+    contenido.textContent = "Cargando codigo...";
+    estado.textContent = "";
+
+    visor.scrollIntoView({ behavior: "smooth" });
+
+    try {
+      const respuesta = await fetch(base + ejercicio.archivo);
+
+      if (!respuesta.ok) {
+        throw new Error("No se ha encontrado el archivo.");
       }
+
+      const codigo = await respuesta.text();
+
+      contenido.textContent = codigo;
+      estado.textContent = "Codigo cargado correctamente.";
+
+    } catch (error) {
+      contenido.textContent = "No se ha podido cargar el codigo.";
+      estado.textContent = error.message;
+    }
+  }
+
+  // Crear los enlaces automaticamente
+  if (menuC) {
+
+    ejercicios.forEach(ejercicio => {
+
+      let enlace = Array.from(menuC.querySelectorAll("a"))
+        .find(a => ejercicio.buscar.test(a.textContent));
+
+      if (!enlace) {
+        const li = document.createElement("li");
+        enlace = document.createElement("a");
+
+        enlace.className = "dropdown-item";
+        enlace.textContent = ejercicio.nombre;
+
+        li.appendChild(enlace);
+        menuC.appendChild(li);
+      }
+
+      enlace.href = "#visor-c";
+
+      enlace.addEventListener("click", function(event) {
+        event.preventDefault();
+        cargarCodigo(ejercicio);
+
+        // Cerrar el menu desplegable de Bootstrap
+        const botonMenu = menuC.parentElement.querySelector(".dropdown-toggle");
+
+        if (botonMenu && window.bootstrap) {
+          const instancia = bootstrap.Dropdown.getInstance(botonMenu);
+
+          if (instancia) instancia.hide();
+        }
+      });
+
     });
-  </script>
-</body>
-</html>
+
+  }
+
+  // Copiar el codigo
+  document.getElementById("copiarC").addEventListener("click", async function() {
+
+    try {
+      await navigator.clipboard.writeText(contenido.textContent);
+
+      this.innerHTML = '<i class="fa-solid fa-check"></i> Copiado';
+
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa-solid fa-copy"></i> Copiar codigo';
+      }, 2000);
+
+    } catch (error) {
+      estado.textContent = "No se ha podido copiar el codigo.";
+    }
+
+  });
+
+});
+</script>
