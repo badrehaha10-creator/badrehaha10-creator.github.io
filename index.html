@@ -1,173 +1,157 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plantilla Web de bader </title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-  <style>
-    /* 1. Submenús en mode fosc */
-    body[data-bs-theme="dark"] .dropdown-menu {
-      background-color: #2c2c2c !important;
-      border-color: #444;
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Direccion de tus codigos en GitHub
+  const base = "https://raw.githubusercontent.com/badrehaha10-creator/badrehaha10-creator.github.io/main/";
+
+  const ejercicios = [
+    {
+      nombre: "Ejercicio con scanf",
+      archivo: "tecnoscanf.c",
+      buscar: /scanf/i
+    },
+    {
+      nombre: "Funcion propia",
+      archivo: "tecnofuncio.c",
+      buscar: /funci[oó]n|funcio/i
+    },
+    {
+      nombre: "Ejercicio tecnob3",
+      archivo: "tecnob3.c",
+      buscar: /tecnob3/i
     }
-    body[data-bs-theme="dark"] .dropdown-item {
-      color: #f8f9fa !important;
-    }
-    body[data-bs-theme="dark"] .dropdown-item:hover,
-    body[data-bs-theme="dark"] .dropdown-item:focus {
-      background-color: #3c3c3c !important;
-      color: #ffffff !important;
-    }
+  ];
 
-    /* 2. Botó mode fosc/clar només icona */
-    #themeToggle {
-      border: none;
-      background: transparent;
-      font-size: 1.3rem;
-      color: inherit;
-    }
+  // Crear el visor de codigos
+  const visor = document.createElement("section");
+  visor.id = "visor-c";
+  visor.className = "container my-5";
 
-    /* 3. Hamburguesa blanca en mode fosc */
-    .navbar-toggler {
-      border: none;
-    }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-    body[data-bs-theme="dark"] .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
+  visor.innerHTML = `
+    <div class="card shadow">
+      <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h3 id="tituloC" class="mb-0">Programacion en C</h3>
 
-    /* 4. Logo circular i adaptatiu */
-    .logo {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-    }
-    @media (max-width: 576px) {
-      .logo {
-        width: 30px;
-        height: 30px;
-      }
-    }
-    @media (min-width: 992px) {
-      .logo {
-        width: 50px;
-        height: 50px;
-      }
-    }
-  </style>
-</head>
-<body data-bs-theme="light">
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top">
-    <div class="container-fluid">
-      <!-- 5. Logo i text -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="logo.png" alt="Logo" class="logo rounded-circle me-2">
-        <span class="fw-bold">Web d'alumne</span>
-      </a>
+        <button id="copiarC" class="btn btn-outline-primary btn-sm">
+          <i class="fa-solid fa-copy"></i> Copiar codigo
+        </button>
+      </div>
 
-      <!-- Botó menú mòbil -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div class="card-body">
+        <p class="text-secondary">
+          Consulta los ejercicios de programacion en C.
+        </p>
 
-      <!-- Menú -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- Projecte 1 -->
-       
+        <pre style="background:#171923;color:#e5e7eb;padding:20px;border-radius:8px;overflow-x:auto;min-height:200px;"><code id="contenidoC">Selecciona un ejercicio del menu.</code></pre>
 
-
-<!-- PROGRAMACION EN C -->
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#"
-     id="cDropdown" role="button"
-     data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fa-solid fa-code me-1"></i>
-    Programación en C
-  </a>
-
-  <ul class="dropdown-menu" aria-labelledby="cDropdown">
-
-    <li>
-      <a class="dropdown-item" href="#visor-c"
-         data-archivo="tecnoscanf.c"
-         data-titulo="Ejercicio con scanf">
-        Ejercicio con scanf
-      </a>
-    </li>
-
-    <li>
-      <a class="dropdown-item" href="#visor-c"
-         data-archivo="tecnofuncio.c"
-         data-titulo="Función propia">
-        Función propia
-      </a>
-    </li>
-
-    <li>
-      <a class="dropdown-item" href="#visor-c"
-         data-archivo="tecnob3.c"
-         data-titulo="Ejercicio tecnob3">
-        Ejercicio tecnob3
-      </a>
-    </li>
-
-    <li>
-      <a class="dropdown-item disabled" href="#"
-         aria-disabled="true">
-        Ejercicio 4 (próximamente)
-      </a>
-    </li>
-
-  </ul>
-</li>
-
-          <!-- Projecte 2 -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="proj2Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-folder-open me-1"></i> Projecte 2
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="proj2Dropdown">
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-chart-line me-1"></i> Projecte 2.1</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-cogs me-1"></i> Projecte 2.2</a></li>
-            </ul>
-          </li>
-        </ul>
-        <!-- Botó mode clar/fosc -->
-        <button id="themeToggle" class="ms-2"><i class="fa-solid fa-moon"></i></button>
+        <p id="estadoC" class="small text-secondary mb-0"></p>
       </div>
     </div>
-  </nav>
+  `;
 
-  <!-- Contingut -->
-  <main class="container py-5">
-    <h1 class="display-5 fw-bold mb-4">Benvinguts a la web de bader</h1>
-    <p class="lead">en aquesta web trobeu exercicis de llenguatges de: programacio en c pyathon i javaScript ,de l'assignatura de programacio de 1er batci de<a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/linstitut/">'institut Pompeu Fabra </a>
-      .</p>
-  </main>
+  document.querySelector("main").appendChild(visor);
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Mode clar/fosc amb canvi d'icona
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
+  const contenido = document.getElementById("contenidoC");
+  const titulo = document.getElementById("tituloC");
+  const estado = document.getElementById("estadoC");
 
-    themeToggle.addEventListener('click', () => {
-      if (document.body.getAttribute('data-bs-theme') === 'dark') {
-        document.body.setAttribute('data-bs-theme', 'light');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-      } else {
-        document.body.setAttribute('data-bs-theme', 'dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
+  // Buscar el menu de Programacion en C
+  const menus = document.querySelectorAll(".nav-item.dropdown");
+
+  let menuC = null;
+
+  menus.forEach(menu => {
+    if (/programaci[oó]n en c|programacio en c/i.test(
+      menu.querySelector(".nav-link")?.textContent || ""
+    )) {
+      menuC = menu.querySelector(".dropdown-menu");
+    }
+  });
+
+  // Cargar un ejercicio dentro de la pagina
+  async function cargarCodigo(ejercicio) {
+
+    titulo.textContent = ejercicio.nombre;
+    contenido.textContent = "Cargando codigo...";
+    estado.textContent = "";
+
+    visor.scrollIntoView({ behavior: "smooth" });
+
+    try {
+      const respuesta = await fetch(base + ejercicio.archivo);
+
+      if (!respuesta.ok) {
+        throw new Error("No se ha encontrado el archivo.");
       }
+
+      const codigo = await respuesta.text();
+
+      contenido.textContent = codigo;
+      estado.textContent = "Codigo cargado correctamente.";
+
+    } catch (error) {
+      contenido.textContent = "No se ha podido cargar el codigo.";
+      estado.textContent = error.message;
+    }
+  }
+
+  // Crear los enlaces automaticamente
+  if (menuC) {
+
+    ejercicios.forEach(ejercicio => {
+
+      let enlace = Array.from(menuC.querySelectorAll("a"))
+        .find(a => ejercicio.buscar.test(a.textContent));
+
+      if (!enlace) {
+        const li = document.createElement("li");
+        enlace = document.createElement("a");
+
+        enlace.className = "dropdown-item";
+        enlace.textContent = ejercicio.nombre;
+
+        li.appendChild(enlace);
+        menuC.appendChild(li);
+      }
+
+      enlace.href = "#visor-c";
+
+      enlace.addEventListener("click", function(event) {
+        event.preventDefault();
+        cargarCodigo(ejercicio);
+
+        // Cerrar el menu desplegable de Bootstrap
+        const botonMenu = menuC.parentElement.querySelector(".dropdown-toggle");
+
+        if (botonMenu && window.bootstrap) {
+          const instancia = bootstrap.Dropdown.getInstance(botonMenu);
+
+          if (instancia) instancia.hide();
+        }
+      });
+
     });
-  </script>
-</body>
-</html>
+
+  }
+
+  // Copiar el codigo
+  document.getElementById("copiarC").addEventListener("click", async function() {
+
+    try {
+      await navigator.clipboard.writeText(contenido.textContent);
+
+      this.innerHTML = '<i class="fa-solid fa-check"></i> Copiado';
+
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa-solid fa-copy"></i> Copiar codigo';
+      }, 2000);
+
+    } catch (error) {
+      estado.textContent = "No se ha podido copiar el codigo.";
+    }
+
+  });
+
+});
+</script>
