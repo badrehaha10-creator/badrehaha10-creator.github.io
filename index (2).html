@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -28,14 +29,14 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="#"><i class="fa-solid fa-code me-2"></i>badr-eddin</a>
-
+ 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+ 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+ 
           <!-- NOU: Programació C -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="projCDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,17 +53,17 @@
       </div>
     </div>
   </nav>
-
+ 
   <main class="container py-5">
     <h1 class="display-5 fw-bold mb-4">Benvinguts a la web de badr-eddin</h1>
     <p class="lead">Aquí hi trobaràs els meus projectes. Al menú <b>Programació C</b> pots obrir els meus programes en C sense sortir de la pàgina.</p>
-
+ 
     <!-- Visor de codi C -->
     <section id="codi-c" class="mt-5 d-none">
       <h2 class="h4 mb-3"><i class="fa-solid fa-terminal me-2"></i><span id="codiTitol"></span></h2>
       <div id="codiError" class="alert alert-warning d-none"></div>
       <pre id="codiPre"><code id="codiText" class="language-c"></code></pre>
-
+ 
       <!-- Només per a tecnofuncio.c -->
       <div id="panellDades" class="card mt-4 d-none">
         <div class="card-body">
@@ -86,7 +87,7 @@
       </div>
     </section>
   </main>
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>
@@ -95,12 +96,12 @@
     const GITHUB_REPO   = "badrehaha10-creator.github.io";     // el repositori on són els .c
     const GITHUB_BRANCA = "main";            // normalment "main" (o "master")
     /* ================================================== */
-
+ 
     // Lògica de tecnofuncio.c en JavaScript (EDITA-LA perquè faci el mateix que el teu C)
     function executarFuncio(a, b) {
       return "Resultat: " + (a + b);   // exemple: suma
     }
-
+ 
     // Mode clar/fosc
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('i');
@@ -112,12 +113,12 @@
       themeIcon.className = fosc ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
       hljsTheme.href = base + (fosc ? 'github-dark.min.css' : 'github.min.css');
     });
-
+ 
     // Programació C
     const seccio = document.getElementById('codi-c');
     const codiText = document.getElementById('codiText');
     const codiError = document.getElementById('codiError');
-
+ 
     document.querySelectorAll('[data-file]').forEach(enllac => {
       enllac.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -143,7 +144,7 @@
         seccio.scrollIntoView({ behavior: 'smooth' });
       });
     });
-
+ 
     document.getElementById('btnExecutar').addEventListener('click', () => {
       const a = parseFloat(document.getElementById('dadaA').value);
       const b = parseFloat(document.getElementById('dadaB').value);
