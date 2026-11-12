@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>badr-eddin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link id="hljsTheme" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" rel="stylesheet">
+  <style>
+    body[data-bs-theme="dark"] .dropdown-menu { background-color: #2c2c2c !important; border-color: #444; }
+    body[data-bs-theme="dark"] .dropdown-item { color: #f8f9fa !important; }
+    body[data-bs-theme="dark"] .dropdown-item:hover,
+    body[data-bs-theme="dark"] .dropdown-item:focus { background-color: #3c3c3c !important; color: #fff !important; }
+    #themeToggle { border: none; background: transparent; font-size: 1.3rem; color: inherit; }
+    .navbar-toggler { border: none; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    body[data-bs-theme="dark"] .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    #codiPre { border-radius: .5rem; max-height: 60vh; overflow: auto; margin: 0; }
+    #codiPre code { padding: 1rem; font-size: .9rem; }
+  </style>
+</head>
+<body data-bs-theme="light">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#"><i class="fa-solid fa-code me-2"></i>badr-eddin</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <!-- NOU: Programació C -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projCDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-terminal me-1"></i> Programació C
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projCDropdown">
+              <li><a class="dropdown-item" href="#codi-c" data-file="tecnob3.c"><i class="fa-solid fa-code me-1"></i> tecnob3.c</a></li>
+              <li><a class="dropdown-item" href="#codi-c" data-file="tecnofuncio.c"><i class="fa-solid fa-calculator me-1"></i> tecnofuncio.c (amb dades)</a></li>
+              <li><a class="dropdown-item" href="#codi-c" data-file="tecnoscanf.c"><i class="fa-solid fa-keyboard me-1"></i> tecnoscanf.c</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-diagram-project me-1"></i> Cerca IA vs Google Acadèmic
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/cerca"><i class="fa-solid fa-seedling me-1"></i> Comparem préssecs</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj2Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-folder-open me-1"></i> Projecte 22 dies en 22 peus
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj2Dropdown">
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/introduccio"><i class="fa-solid fa-file-lines me-1"></i> Introducció al projecte</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/vectors"><i class="fa-regular fa-compass me-1"></i> Calculem rumbs amb vectors</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/distancies"><i class="fa-solid fa-arrows-left-right-to-line me-1"></i> Calculem distàncies amb GPS</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj3Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-folder-open me-1"></i> Contaminació i salut al Baix Llobregat
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj3Dropdown">
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/contaminacio"><i class="fa-solid fa-smog me-1"></i> Contaminació i salut respiratòria a Sant Andreu de la Barca</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/epi"><i class="fa-solid fa-head-side-mask me-1"></i> Environmental Epidemiological Analysis</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/dlnm"><i class="fa-solid fa-smog me-1"></i> Distributed Lag Non-linear Models</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/epidemiologia"><i class="fa-solid fa-industry me-1"></i> Resultats de Sant Andreu de la Barca</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj4Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-folder-open me-1"></i> Versions del ping pong
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj4Dropdown">
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/pong-v1"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Pong versió 1</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/pong-v2"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Pong versió 2</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/pong-v3"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Pong versió 3</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/pong-v4"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Pong versió 4</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/pong-v5"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Pong versió 5</a></li>
+              <li><a class="dropdown-item" href="https://emoreno12.github.io/pong-v6"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Pong versió 6</a></li>
+            </ul>
+          </li>
+        </ul>
+        <button id="themeToggle" class="ms-2" aria-label="Canviar tema"><i class="fa-solid fa-moon"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <h1 class="display-5 fw-bold mb-4">Benvinguts a la web de badr-eddin</h1>
+    <p class="lead">Aquí hi trobaràs els meus projectes. Al menú <b>Programació C</b> pots obrir els meus programes en C sense sortir de la pàgina.</p>
+
+    <!-- Visor de codi C -->
+    <section id="codi-c" class="mt-5 d-none">
+      <h2 class="h4 mb-3"><i class="fa-solid fa-terminal me-2"></i><span id="codiTitol"></span></h2>
+      <div id="codiError" class="alert alert-warning d-none"></div>
+      <pre id="codiPre"><code id="codiText" class="language-c"></code></pre>
+
+      <!-- Només per a tecnofuncio.c -->
+      <div id="panellDades" class="card mt-4 d-none">
+        <div class="card-body">
+          <h3 class="h5">Prova el programa amb les teves dades</h3>
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-4">
+              <label class="form-label" for="dadaA">Primer número</label>
+              <input type="number" step="any" id="dadaA" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <label class="form-label" for="dadaB">Segon número</label>
+              <input type="number" step="any" id="dadaB" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <button id="btnExecutar" class="btn btn-primary w-100"><i class="fa-solid fa-play me-1"></i> Executar</button>
+            </div>
+          </div>
+          <div id="resultat" class="mt-3 fw-bold"></div>
+          <small class="text-body-secondary">Els navegadors no executen C; aquesta és la mateixa lògica escrita en JavaScript.</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    /* ===== CONFIGURACIÓ: canvia aquestes 3 línies ===== */
+    const GITHUB_USUARI = "badrehaha10-creator";   // el teu nom d'usuari de GitHub
+    const GITHUB_REPO   = "badrehaha10-creator.github.io";     // el repositori on són els .c
+    const GITHUB_BRANCA = "main";            // normalment "main" (o "master")
+    /* ================================================== */
+
+    // Lògica de tecnofuncio.c en JavaScript (EDITA-LA perquè faci el mateix que el teu C)
+    function executarFuncio(a, b) {
+      return "Resultat: " + (a + b);   // exemple: suma
+    }
+
+    // Mode clar/fosc
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const hljsTheme = document.getElementById('hljsTheme');
+    const base = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/";
+    themeToggle.addEventListener('click', () => {
+      const fosc = document.body.getAttribute('data-bs-theme') !== 'dark';
+      document.body.setAttribute('data-bs-theme', fosc ? 'dark' : 'light');
+      themeIcon.className = fosc ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      hljsTheme.href = base + (fosc ? 'github-dark.min.css' : 'github.min.css');
+    });
+
+    // Programació C
+    const seccio = document.getElementById('codi-c');
+    const codiText = document.getElementById('codiText');
+    const codiError = document.getElementById('codiError');
+
+    document.querySelectorAll('[data-file]').forEach(enllac => {
+      enllac.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const fitxer = enllac.dataset.file;
+        seccio.classList.remove('d-none');
+        document.getElementById('codiTitol').textContent = fitxer;
+        document.getElementById('panellDades').classList.toggle('d-none', fitxer !== 'tecnofuncio.c');
+        document.getElementById('resultat').textContent = '';
+        codiError.classList.add('d-none');
+        codiText.textContent = 'Carregant...';
+        codiText.removeAttribute('data-highlighted');
+        try {
+          const url = `https://raw.githubusercontent.com/${GITHUB_USUARI}/${GITHUB_REPO}/${GITHUB_BRANCA}/${fitxer}`;
+          const resp = await fetch(url);
+          if (!resp.ok) throw new Error(resp.status);
+          codiText.textContent = await resp.text();
+          hljs.highlightElement(codiText);
+        } catch (err) {
+          codiText.textContent = '';
+          codiError.textContent = "No s'ha pogut carregar " + fitxer + ". Revisa usuari, repositori i branca a la configuració del script.";
+          codiError.classList.remove('d-none');
+        }
+        seccio.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.getElementById('btnExecutar').addEventListener('click', () => {
+      const a = parseFloat(document.getElementById('dadaA').value);
+      const b = parseFloat(document.getElementById('dadaB').value);
+      document.getElementById('resultat').textContent =
+        (isNaN(a) || isNaN(b)) ? 'Introdueix dos números.' : executarFuncio(a, b);
+    });
+  </script>
+</body>
+</html>
