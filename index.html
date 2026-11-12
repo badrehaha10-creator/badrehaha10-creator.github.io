@@ -42,27 +42,27 @@
       </div>
     </div>
   </nav>
-
+ 
   <!-- INICI -->
   <main class="container py-5" id="vistaInici">
     <h1 class="display-5 fw-bold mb-4">Benvinguts als Projectes</h1>
     <p class="lead">Aquesta és la web de <b>badr-eddin</b>. Gràcies per visitar-la! Aquí hi trobaràs els projectes que he fet a l'<a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">Institut Pompeu Fabra</a>.</p>
   </main>
-
+ 
   <!-- PROGRAMACIÓ C -->
   <main class="container py-5" id="vistaC" hidden>
     <h1 class="display-6 fw-bold mb-4">Programació C</h1>
     <ul class="nav nav-pills mb-4" id="tabs"></ul>
-
+ 
     <div class="card mb-3"><div class="card-body"><h2 class="h5">🎯 Objectiu</h2><div id="obj"></div></div></div>
     <div class="card mb-3"><div class="card-body"><h2 class="h5">📚 Conceptes clau</h2><ul class="mb-0" id="con"></ul></div></div>
-
+ 
     <div class="card mb-3"><div class="card-body">
       <h2 class="h5">📝 Codi C <small class="text-body-secondary fw-normal" id="nomFitxer"></small></h2>
       <textarea id="code"></textarea>
       <div id="err" class="text-danger mt-2"></div>
     </div></div>
-
+ 
     <div class="card mb-3" id="panellDades" hidden><div class="card-body">
       <h2 class="h5">⚙️ Les teves dades</h2>
       <div class="row g-2">
@@ -73,7 +73,7 @@
       </div>
       <small class="text-body-secondary">S'envien al programa en aquest ordre: pes, h1, h2, h3. Han de coincidir amb l'ordre dels scanf.</small>
     </div></div>
-
+ 
     <div class="card mb-3"><div class="card-body">
       <h2 class="h5">⌨️ Entrada de dades (scanf)</h2>
       <textarea id="stdin" class="form-control font-monospace" rows="3" placeholder="Una dada per línia, en l'ordre que les demana el programa"></textarea>
@@ -84,24 +84,24 @@
       </div>
       <p id="estat" class="text-body-secondary mt-3 mb-0">Comprovant el navegador...</p>
     </div></div>
-
+ 
     <div class="card mb-3"><div class="card-body">
       <h2 class="h5">🖥 Consola del programa</h2>
       <pre id="sortida" class="border rounded p-3 mb-0">Esperant que executis el programa...</pre>
     </div></div>
   </main>
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
   <script>
     let Wasmer, Directory;   // es carreguen només en prémer «Compilar i executar»
-
+ 
     /* ===== CONFIGURACIÓ ===== */
     const GITHUB_USUARI = "badrehaha10-creator";
     const GITHUB_REPO   = "badrehaha10-creator.github.io";
     const GITHUB_BRANCA = "main";   // posa "master" si el teu repositori l'usa
-
+ 
     // Textos de cada programa (pots editar-los)
     const LLICONS = [
       {f:"tecnob3.c", obj:"Entendre l'estructura bàsica d'un programa en C i com s'executa.",
@@ -111,28 +111,28 @@
       {f:"tecnoscanf.c", obj:"Llegir dades que escriu l'usuari pel teclat amb scanf.",
        con:["scanf i els especificadors (%d, %f, %s)","Declarar variables","Mostrar el resultat amb printf"]}
     ];
-
+ 
     const $ = id => document.getElementById(id);
     const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     const estat = m => { $("estat").textContent = m; };
-
+ 
     const editor = CodeMirror.fromTextArea($("code"), {
       mode: "text/x-csrc", theme: "dracula", lineNumbers: true, indentUnit: 4, tabSize: 4, lineWrapping: true
     });
-
+ 
     // Mode clar/fosc
     $("themeToggle").addEventListener("click", () => {
       const fosc = document.body.getAttribute("data-bs-theme") !== "dark";
       document.body.setAttribute("data-bs-theme", fosc ? "dark" : "light");
       $("themeToggle").innerHTML = fosc ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
-
+ 
     function vista(v){
       $("vistaInici").hidden = v !== "inici"; $("vistaC").hidden = v !== "c";
       window.scrollTo(0,0); if (v === "c") editor.refresh();
     }
     $("lnkInici").onclick = e => { e.preventDefault(); vista("inici"); };
-
+ 
     async function carrega(i){
       const ll = LLICONS[i];
       document.querySelectorAll("#tabs .nav-link").forEach((t,j)=>t.classList.toggle("active", i===j));
@@ -155,7 +155,7 @@
       editor.refresh();
     }
     const obre = i => { vista("c"); carrega(i); };
-
+ 
     LLICONS.forEach((ll,i) => {
       const li = document.createElement("li");
       li.innerHTML = '<a class="dropdown-item" href="#"><i class="fa-solid fa-code me-1"></i> '+ll.f+'</a>';
@@ -167,16 +167,16 @@
       tab.firstChild.onclick = e => { e.preventDefault(); carrega(i); };
       $("tabs").appendChild(tab);
     });
-
+ 
     // Les 4 dades de tecnofuncio omplen l'entrada (pes, h1, h2, h3)
     ["dadaPes","dadaH1","dadaH2","dadaH3"].forEach(id => $(id).addEventListener("input", () => {
       $("stdin").value = ["dadaPes","dadaH1","dadaH2","dadaH3"].map(x => $(x).value).filter(v => v !== "").join("\n");
     }));
-
+ 
     // ---- Compilador (Wasmer + Clang) ----
     let iniciat = false, clang = null;
     const aillat = () => window.crossOriginIsolated && typeof SharedArrayBuffer !== "undefined";
-
+ 
     async function inicia(){
       if (iniciat) return;
       if (!aillat()) throw new Error("El navegador no està aïllat.\nComprova que coi-serviceworker.js és al repositori i recarrega la pàgina.");
@@ -189,7 +189,7 @@
       clang = await Wasmer.fromRegistry("clang/clang");
       iniciat = true;
     }
-
+ 
     async function executa(){
       $("bRun").disabled = true; $("sortida").textContent = "";
       try {
@@ -205,10 +205,17 @@
         const wasm = await dir.readFile("main.wasm");
         estat("Executant el programa...");
         const prog = await Wasmer.fromFile(wasm);
-        const ex = await prog.entrypoint.run({ stdin: $("stdin").value + "\n" });
+        const ex = await prog.entrypoint.run();
+        const dades = $("stdin").value.trim();
+        if (dades) {                                   // envia les dades dels scanf
+          const w = ex.stdin.getWriter();
+          await w.write(new TextEncoder().encode(dades + "\n"));
+          await w.close();
+        }
         const r = await ex.wait();
-        $("sortida").textContent = (r.stdout || "(el programa no ha generat cap sortida)")
-          + (r.stderr ? "\n\n=== ERRORS ===\n" + r.stderr : "") + "\n\nCodi de sortida: " + r.code;
+        let text = r.stdout || "";
+        if (r.stderr) text += (text ? "\n\n" : "") + "=== ERRORS ===\n" + r.stderr;
+        $("sortida").textContent = text || "(el programa no ha generat cap sortida)";
         estat("✓ Compilació i execució completades.");
       } catch (e) {
         console.error(e);
@@ -217,7 +224,7 @@
       } finally { $("bRun").disabled = false; }
     }
     $("bRun").onclick = executa;
-
+ 
     $("bCopy").onclick = async () => {
       try { await navigator.clipboard.writeText(editor.getValue()); estat("Codi copiat."); }
       catch (e) { estat("No s'ha pogut copiar: " + e.message); }
@@ -228,9 +235,11 @@
       a.download = $("nomFitxer").textContent.replace("· ","") || "main.c";
       a.click(); estat("Fitxer C descarregat.");
     };
-
+ 
     estat(aillat() ? "✓ Navegador aïllat. Prem Compilar i executar." : "Esperant l'aïllament del navegador. Recarrega la pàgina.");
     carrega(0);
   </script>
 </body>
 </html>
+ 
+
